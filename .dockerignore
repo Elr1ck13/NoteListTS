@@ -1,0 +1,43 @@
+# Node.js
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build / dist
+build
+dist
+
+# Coverage reports
+coverage
+
+# Environment files (no subir credenciales al contenedor)
+.env
+.env.*
+
+# Logs y temporales
+*.log
+*.pid
+*.seed
+tmp/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# VSCode / IDE
+.vscode
+*.swp
+*.swo
+
+# Devcontainer (solo configuración, no cachés)
+.devcontainer/.cache
+.devcontainer/logs
+
+# Docker-compose y otros archivos que no deben ir en la imagen
+docker-compose.yml
+
