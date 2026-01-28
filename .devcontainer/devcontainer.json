@@ -1,12 +1,11 @@
 {
-  "name": "React 17 + TS 4 DevContainer",
+  "name": "React + TS DevContainer",
   "dockerComposeFile": [
-    "../docker-compose.yml"
+    "../docker-compose.dev.yml"
   ],
-  "service": "react-app",              // debe coincidir con el nombre del servicio en docker-compose
+  "service": "react-app-dev",          // debe coincidir con el nombre del servicio en docker-compose
   "workspaceFolder": "/app",
   "forwardPorts": [3000],
-  "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
       "extensions": [

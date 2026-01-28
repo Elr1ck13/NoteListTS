@@ -1,27 +1,21 @@
-version: "3.9"
 
 services:
-  react-app:
+  react-app-dev:
     build:
       context: .
-      dockerfile: Dockerfile
-
-    container_name: notelist-react-app
-
+      dockerfile: Dockerfile.dev
+      args:
+        PORT: ${PORT}
+    container_name: notelist-react-app-dev
     ports:
-      - "3000:3000"
-
+      - "${PORT}:${PORT}"
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public
-
       - ./tsconfig.json:/app/tsconfig.json:ro
-
+      - ./vite.config.ts:/app/vite.config.ts:ro
+    env_file:
+      - .env
     environment:
       - NODE_ENV=development
-
       - CHOKIDAR_USEPOLLING=true
-
       - WATCHPACK_POLLING=true
-
     restart: unless-stopped
