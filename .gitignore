@@ -32,7 +32,7 @@ Thumbs.db
 *.seed
 *.log
 tmp/
-# Evita subir volúmenes o datos generados
+# No volúmenes o datos generados
 docker-data/
 
 # Devcontainer

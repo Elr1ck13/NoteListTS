@@ -1,19 +1,23 @@
 {
   "name": "React + TS DevContainer",
-  "dockerComposeFile": [
-    "../docker-compose.dev.yml"
-  ],
-  "service": "react-app-dev",          // debe coincidir con el nombre del servicio en docker-compose
+  "dockerComposeFile": ["../docker-compose.dev.yml"],
+  "service": "react-app-dev",
   "workspaceFolder": "/app",
-  "forwardPorts": [3000],
+  "remoteUser": "node",
+  
+  "updateRemoteUserUID": true,
+
   "customizations": {
     "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "ms-vscode.vscode-typescript-next"
+        "ms-vscode.vscode-typescript-next",
+        "dsznajder.es7-react-js-snippets",
+        "vscode-icons-team.vscode-icons"
       ]
     }
   },
-  "remoteUser": "node"
+
+  "postStartCommand": "git config --global --add safe.directory /app && sudo chown node:node /app || true"
 }

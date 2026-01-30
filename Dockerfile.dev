@@ -2,7 +2,17 @@ FROM node:18-alpine AS dev
 
 WORKDIR /app
 
-RUN apk add --no-cache bash git python3 make g++
+RUN apk add --no-cache bash git python3 make g++ sudo
+
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+RUN echo 'parse_git_branch() { git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"; }' >> /home/node/.bashrc \
+    && echo 'export PS1="\[\033[01;32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \$ "' >> /home/node/.bashrc \
+    && echo 'alias gs="git status"' >> /home/node/.bashrc \
+    && echo 'alias ga="git add ."' >> /home/node/.bashrc \
+    && echo 'alias gc="git commit -m"' >> /home/node/.bashrc \
+    && echo 'alias gp="git push"' >> /home/node/.bashrc \
+    && echo 'alias gl="git log --oneline --graph --all"' >> /home/node/.bashrc
 
 COPY --chown=node:node package.json package-lock.json* ./
 
