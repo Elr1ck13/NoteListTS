@@ -2,7 +2,7 @@ FROM node:18-alpine AS dev
 
 WORKDIR /app
 
-RUN apk add --no-cache bash git python3 make g++ sudo
+RUN apk add --no-cache bash git python3 make g++ sudo openssh-client
 
 RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
