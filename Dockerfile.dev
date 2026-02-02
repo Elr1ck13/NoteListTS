@@ -1,32 +1,21 @@
 FROM node:18-alpine AS dev
 
+RUN apk add --no-cache bash git
+
 WORKDIR /app
 
-RUN apk add --no-cache bash git python3 make g++ sudo openssh-client
-
-RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-RUN echo 'parse_git_branch() { git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"; }' >> /home/node/.bashrc \
-    && echo 'export PS1="\[\033[01;32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \$ "' >> /home/node/.bashrc \
-    && echo 'alias gs="git status"' >> /home/node/.bashrc \
-    && echo 'alias ga="git add ."' >> /home/node/.bashrc \
-    && echo 'alias gc="git commit -m"' >> /home/node/.bashrc \
-    && echo 'alias gp="git push"' >> /home/node/.bashrc \
-    && echo 'alias gl="git log --oneline --graph --all"' >> /home/node/.bashrc
+RUN chown node:node /app
 
 COPY --chown=node:node package.json package-lock.json* ./
 
+USER node
+
 RUN npm install
 
-RUN chown -R node:node /app/node_modules /app/package-lock.json
 
-COPY --chown=node:node index.html ./          
-COPY --chown=node:node public ./public
-COPY --chown=node:node src ./src
-COPY --chown=node:node tsconfig*.json ./
-COPY --chown=node:node vite.config.ts ./
-
-USER node
+COPY --chown=node:node src/ ./src/
+COPY --chown=node:node public/ ./public/
+COPY --chown=node:node index.html tsconfig*.json vite.config.ts ./
 
 ARG PORT=3000
 ENV PORT=$PORT

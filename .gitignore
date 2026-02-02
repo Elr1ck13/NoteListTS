@@ -43,3 +43,6 @@ docker-data/
 *.tgz
 *.zip
 *.tar
+
+#docker-override
+docker-compose.override.yml

@@ -18,11 +18,11 @@ tmp/
 .DS_Store
 
 # Git 
-# IMPORTANTE: NO ignores .git para que el contenedor reconozca el repo
-# .git <--- ELIMINADO O COMENTADO
+
+
 
 # VSCode / IDE
 .vscode
 
-# Docker (Archivos de infraestructura)
-# No los ignores si quieres que el contenedor los "vea" a través del volumen
+# Docker 
+docker-compose.override.yml
