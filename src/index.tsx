@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import ReactDOM from 'react-dom'; 
+import '@styles/index.css';
+import { NoteModule } from './components/NoteModule';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <NoteModule />
   </React.StrictMode>,
-  document.getElementById('root') 
+  document.getElementById('root')
 );

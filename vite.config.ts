@@ -6,13 +6,12 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '3000', 10),
-    // Configuración de HMR para Docker
     watch: {
-      usePolling: true, // Crucial para detectar cambios en volúmenes Docker
-      interval: 100,    // Revisa cambios cada 100ms
+      usePolling: true, 
+      interval: 100,    
     },
     hmr: {
-      // Forzamos a que el cliente de HMR se conecte al puerto correcto
+      
       clientPort: parseInt(process.env.PORT || '3000', 10),
     },
   },
@@ -23,6 +22,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
+      '@styles': '/src/assets/styles',
     },
   },
 });
