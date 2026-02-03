@@ -34,7 +34,7 @@ export const useNotes = () => {
 
   const addNote = (text: string) => {
     if (!text.trim()) return;
-    const newNote: Note = { id: crypto.randomUUID(), text };
+    const newNote: Note = { id: crypto.randomUUID(), text , createdAt: new Date()};
     setNotes((prev) => [...prev, newNote]);
   };
 
